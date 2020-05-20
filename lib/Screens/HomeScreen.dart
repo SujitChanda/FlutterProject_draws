@@ -8,9 +8,14 @@ import 'ActivityList.dart';
 import 'userProfile.dart';
 
 var assetImage = AssetImage('assets/logo1.jpg');
+final String accountName = 'Sujit Chanda';
+final String accountEmail = 'S.chanda@outlook.com';
+
 
 class HomeScreen extends StatefulWidget {
   final FirebaseUser user;
+ 
+
   HomeScreen({Key key, this.user}) : assert(user!= null), super(key: key);
 
   @override
@@ -43,16 +48,40 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: <Widget>[
 
+            
+
         
              UserAccountsDrawerHeader(
-              accountName: Text("Sujit Chanda"), 
-              accountEmail: Text("S.chanda@outlook.com"),
+
+              accountName: Text(accountName), 
+              accountEmail: Text(accountEmail),
+
               currentAccountPicture: new CircleAvatar(
               backgroundImage: new AssetImage('assets/android.jpg'),
               ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: <Color>[
+                      Colors.deepOrange,
+                      Colors.orangeAccent,
+              
+                  ])
+                  ),
               ),
+        
 
-             
+              CustomListTile(Icons.person,'Profile',() { 
+                      Navigator.of(context).pop();
+                      Navigator.push(context, new MaterialPageRoute(
+                      builder: (BuildContext context) => new ActivityList())
+                 );}),
+              CustomListTile(Icons.notifications,'Notifications',()=>{}),
+              CustomListTile(Icons.settings,'Settings',()=>{}),
+              CustomListTile(Icons.lock,'Logout',(){
+                    _firebaseAuth.signOut();
+                    Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => App()));
+                      },),
+            /* 
               Card(
                 color: Colors.redAccent,
                 child: ListTile(
@@ -73,6 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
               color:Colors.black,
               height: 10.0,),
             ),
+
+
+           
             
             Card(
               color: Colors.redAccent,
@@ -109,6 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           )
+
+          */
 
           ],
         )
@@ -164,6 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(20.0)),
     );
   }
+
+  
   void choiceAction(String choice){
 
   if( choice == Constants.signOut){
@@ -173,8 +209,63 @@ class _HomeScreenState extends State<HomeScreen> {
     context, MaterialPageRoute(builder: (context) => App()));
 
   }
-
 }
 
 
+void _signOut(){
+
+  _firebaseAuth.signOut();
+  Navigator.pushReplacement(
+  context, MaterialPageRoute(builder: (context) => App()));
+}
+
+
+
+}
+
+class CustomListTile extends StatelessWidget {
+
+  IconData icon;
+  String text;
+  Function onTap;
+
+  CustomListTile(this.icon,this.text,this.onTap);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.grey.shade400))
+        ),
+        child:InkWell(
+      splashColor: Colors.redAccent,
+      onTap: onTap,
+      child: Container(
+        height:50,
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+         Row(
+           children: <Widget>[
+              Icon(icon),
+              Padding(padding: EdgeInsets.all(8.0),
+              child: Text(text,
+              style: TextStyle(
+                fontSize: 16.0
+              ),
+              ),
+              )
+           ],
+         ),
+          Icon(Icons.arrow_right)
+        ],
+      ),
+      )
+    ),
+      )
+      );
+  }
 }

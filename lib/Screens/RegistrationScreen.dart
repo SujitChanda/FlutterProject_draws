@@ -120,7 +120,7 @@ class RegistrationScreen extends StatelessWidget {
                   ),
                 
 
-                Divider(height: 25.0),
+                Divider(height: 10.0),
 
                 TextFormField(
                   controller: _lNameController,
@@ -143,8 +143,10 @@ class RegistrationScreen extends StatelessWidget {
                   ),
                 ),
                 Divider(
-              height: 25.0,
+              height: 10.0,
             ),
+
+            
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
@@ -169,7 +171,7 @@ class RegistrationScreen extends StatelessWidget {
                   ),
                 ),
                Divider(
-              height: 25.0,
+              height: 10.0,
             ),
                 TextFormField(
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:ui';
@@ -6,16 +8,22 @@ import 'package:flutter/rendering.dart';
 var assetImage = AssetImage('assets/logo1.jpg');
 
 class GeneratePage extends StatefulWidget {
+     
+  
+
   @override
   State<StatefulWidget> createState() => GeneratePageState();
 }
 
 class GeneratePageState extends State<GeneratePage> {
-  String qrData =
-      "https://github.com/neon97";  // already generated qr code when the page opens
+ 
+  final String name = "Sujit Chanda";
+  final String id = "17149030161";
+  String qrData = "Sujit Chanda";
+ 
+  
+    // already generated qr code when the page opens
 
-  String name = "Sujit Chanda";
-  String id = "17149030161";
 
   @override
   Widget build(BuildContext context) {
