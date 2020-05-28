@@ -1,58 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:simple_animations/simple_animations.dart';
-
-class successPage extends StatefulWidget {
-  @override
-
-  _successPageState createState() => _successPageState();
-}
-
-class _successPageState extends State<successPage> {
-
-  String _animationName = "Success Check";
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _animationName = "Success Check";
-    });
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:intl/intl.dart';
 
 
-  }
 
 
+ String _animationName = "Success Check";
+ var now = new DateTime.now();
+
+class HomePage extends StatelessWidget {
+  HomePage({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-       child: Scaffold(
-         appBar: AppBar(
-           title: Text("Success ")
-         ),
-         body:Container(
-           padding: EdgeInsets.all(32.0),
-           child: Center(
-             child: Column(
-                 children: <Widget>[
-                   Expanded(child:
-                   FlareActor(
-                     "assets/Success Check.flr",
-                     alignment: Alignment.center,
-                     fit: BoxFit.contain,
-                     animation: _animationName,
-                     ),
-                   )
-                 ],
-             
-               ),
-           ),
-         )
-       )
+    return MaterialApp(
+   home: Scaffold(
+      body:new SingleChildScrollView(
+        child: Column(
+        children: <Widget>[
+          topBar(),
+          HomePageContent(),
+        ],
+      ),
+      )
+    ),
     );
-      
-  
+  }
+
+
+  SizedBox topBar() {
+    return SizedBox(
+      height: 150,
+      child: Stack(
+        overflow: Overflow.visible,
+        children: <Widget>[
+          BlueBar(),
+          CircleAvatar(),
+        ],
+      ),
+    );
   }
 }
 
@@ -64,9 +53,14 @@ class BlueBar extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: 150),
       builder: (context, animation) {
         return Container(
+          padding: EdgeInsets.only(bottom:0.0),
+          child: Center(
+            child:Text("Login Successful ",style: TextStyle(fontSize: 30, color:Colors.white,fontWeight: FontWeight.w500),),
+          ),
           height: animation,
           width: double.infinity,
           color: Colors.blue,
+          
         );
       },
     );
@@ -89,20 +83,21 @@ class CircleAvatar extends StatelessWidget {
           child: Transform.scale(
             scale: scaleValue,
             alignment: Alignment.center,
-            child: blueCircle(),
+            child: logoCircle(),
           ),
         );
       },
     );
   }
 
-  Widget blueCircle() {
+  Widget logoCircle() {
     return Container(
       height: 100,
       width: 100,
+      child: Image.asset("assets/logo1.jpg",fit: BoxFit.contain,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: Colors.blue.shade700,
+        //color: Colors.blue.shade700,
       ),
     );
   }
@@ -131,8 +126,29 @@ class HomePageContent extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: 1),
       builder: (context, opacityValue) {
         return Opacity(
+          
           opacity: opacityValue,
-          child: placeholderBox(28, 150, Alignment.centerLeft),
+          child:Container(
+        height: 35,
+        width:MediaQuery. of(context). size. width,
+         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          
+          color: Colors.grey.shade300,  
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left:10,right:10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: <Widget>[
+                     Text("Sujit Chanda", style: TextStyle(fontSize: 20)),
+                     Text(new DateFormat("dd-MM-yyyy | hh:mm:ss").format(now)),
+                     
+                   ],
+               
+                 ),
+        ),
+      ),
         );
       },
     );
@@ -146,7 +162,8 @@ class HomePageContent extends StatelessWidget {
       builder: (context, opacityValue) {
         return Opacity(
           opacity: opacityValue,
-          child: placeholderBox(250, double.infinity, Alignment.centerLeft),
+          child: placeholderBox(300, double.infinity, Alignment.centerLeft
+          ),
         );
       },
     );
@@ -162,10 +179,23 @@ class HomePageContent extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.grey.shade300,
+         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey.shade300,  
         ),
+        child: Column(
+                 children: <Widget>[
+                   Expanded(child:
+                   FlareActor(
+                     "assets/Success Check.flr",
+                     alignment: Alignment.center,
+                     fit: BoxFit.contain,
+                     animation: _animationName,
+                     ),
+                   )
+                 ],
+             
+               ),
       ),
     );
   }

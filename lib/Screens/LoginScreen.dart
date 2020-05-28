@@ -1,11 +1,11 @@
 //import 'dart:js';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebasre_project/Screens/HomeScreen.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'otp_screen.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebasre_project/Screens/HomeScreen.dart';
+//import 'package:flutter/foundation.dart';
+//import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
+//import 'otp_screen.dart';
 
 
 /*
@@ -189,7 +189,7 @@ class LoginScreen extends StatelessWidget {
   }
   
 }
-*/
+
 
 
 class PhoneLogin extends StatefulWidget {
@@ -369,3 +369,4 @@ class _PhoneLoginState extends State<PhoneLogin> {
     );
   }
 }
+*/

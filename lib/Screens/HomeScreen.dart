@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+/* import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'Constants.dart';
@@ -7,16 +7,17 @@ import 'scan.dart';
 import 'ActivityList.dart';
 import 'userProfile.dart';
 
+
 var assetImage = AssetImage('assets/logo1.jpg');
 final String accountName = 'Sujit Chanda';
 final String accountEmail = 'S.chanda@outlook.com';
 
 
 class HomeScreen extends StatefulWidget {
-  final FirebaseUser user;
+  //final FirebaseUser user;
  
 
-  HomeScreen({Key key, this.user}) : assert(user!= null), super(key: key);
+  HomeScreen({Key key}) :  super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -30,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("QR REGISTER"),
-        actions: <Widget>[
+
+
+      /*  actions: <Widget>[
           PopupMenuButton<String>(
             onSelected: choiceAction,
             itemBuilder: (BuildContext context){
@@ -42,14 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
               }).toList();
             },
           )
-        ],
+        ],*/
+
+
       ),
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[
-
-            
-
         
              UserAccountsDrawerHeader(
 
@@ -72,10 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
               CustomListTile(Icons.person,'Profile',() { 
                       Navigator.of(context).pop();
                       Navigator.push(context, new MaterialPageRoute(
-                      builder: (BuildContext context) => new ActivityList())
+                      builder: (BuildContext context) => new userProfile())
                  );}),
-              CustomListTile(Icons.notifications,'Notifications',()=>{}),
+
+              CustomListTile(Icons.notifications,'Notifications',() {
+                      Navigator.of(context).pop();
+                      Navigator.push(context, new MaterialPageRoute(
+                      builder: (BuildContext context) =>  successPage())
+                 );
+              }),
+
               CustomListTile(Icons.settings,'Settings',()=>{}),
+
               CustomListTile(Icons.lock,'Logout',(){
                     _firebaseAuth.signOut();
                     Navigator.pushReplacement(
@@ -269,3 +279,5 @@ class CustomListTile extends StatelessWidget {
       );
   }
 }
+
+*/
